@@ -4,6 +4,7 @@ from affine_crypto_analysis import print_affine
 from cezar import print_ctext, print_ccipher
 from vigener import print_cvigenere, print_cvigenere_autokey, print_vigenere_cis, print_vigenere_crypto_analysis_with_best_possibility
 from playfair import print_cplayfair, print_playfair_decrypt
+from hill import print_hill_cipher
 
 while(1):
 	print("Possibilities:")
@@ -18,6 +19,7 @@ while(1):
 	print("I. vigenere crypto analysis with coincidence index -- with most possible plain text ")
 	print("J. playfair cipher maker ")
 	print("K. playfair crypto analysis with known keyword")
+	print("L. hill cipher maker with given keyword(matrix) ")
 	print("EXIT \n")
 
 	respond = input("""What do you want? -- type \"EXIT\",\"A\",\"B\",\"C\",\"D\"...  
@@ -46,5 +48,7 @@ while(1):
 		print_cplayfair()
 	elif( respond == "K" or respond == "k" ):
 		print_playfair_decrypt()
+	#elif( respond == "L" or respond == "l" ):
+	#	print_hill_cipher() #samo iz power shella mogu pokrenuti zbog numpya
 	else:
 		print("Type something of proposed options!")
