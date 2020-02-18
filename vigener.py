@@ -132,14 +132,13 @@ def vigenere_decrypt(text, m):
 		#prvo pronađemo sve Mg-ove , 0<=g<=25
 		M_max = 0
 		h = 0
-
 		#j-ti redak
 		if( m == 1 ): zj = text
 		else: zj = row[j]
 		n = len(zj)
 		#print("slovo: ",j)
 		#print("Mg-ovi")
-
+		print(n)
 		for g in range(0,26):
 			#pomaknuti red zj za g mjesta
 			zjg = ''
@@ -158,13 +157,13 @@ def vigenere_decrypt(text, m):
 				#ls[0] je slovo, ls[1] je broj njegovog pojavljivanja u tekstu zjg
 				Mg += (frequency_cro[ls[0]]/100)*(ls[1]) #odredo ovo
 			Mg = Mg / n
-			#print("g = ", g, " Mg= ", Mg)
 
 			#provjerimo je li takav Mg najveći do sada
 			if( Mg > M_max ): 
 				M_max = Mg
 				h = g
 
+		print("najbolji g: ", h, " najbolji Mg: ", M_max)
 		K_numerical.append( (26-h) % 26 )
 		K += abeceda[ (26-h) % 26 ]
 	return [K_numerical, K ]
@@ -210,3 +209,7 @@ def print_vigenere_crypto_analysis_with_best_possibility():
 # plain_text = vigenere_decrypt_cipher(text, key) 
 # print( plain_text )
 # print("\n")
+
+"""CIPHER = "AHNKJPJVMCJSJARZZJCNKJSJAJQPKIDRRAHIDIJHJMJIDSJIXUVSHIASVIACEIJZDJCUD
+	   NVIVFJQJRYSKJNDRDXLBDXLTBRFKQEMRMJKJQJIDREDNSVLKIDVXFRZCNKJSJIYQPKVVSJS"
+print(decrypt_playfair_with_known_keyword(cipher,make_m5x5("SREDNJIVIJEK")))"""

@@ -4,7 +4,7 @@ from affine_crypto_analysis import print_affine
 from cezar import print_ctext, print_ccipher
 from vigener import print_cvigenere, print_cvigenere_autokey, print_vigenere_cis, print_vigenere_crypto_analysis_with_best_possibility
 from playfair import print_cplayfair, print_playfair_decrypt
-from hill import print_hill_cipher
+#from hill import print_hill_cipher
 
 while(1):
 	print("Possibilities:")

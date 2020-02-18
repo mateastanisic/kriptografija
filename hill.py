@@ -12,17 +12,19 @@ def getMatrixMinor(M,i,j):
 def getMatrixDeternminant(M, m):
     #base case for 2x2 matrix
     if m == 2:
-        return M[0,0]*M[1,1]-M[0,1]*M[1,0]
+        determinant =  M[0,0]*M[1,1]-M[0,1]*M[1,0]
+    else:
+        determinant = 0
+        for c in range(m):
+            determinant += ((-1)**c)*M[0,c]*getMatrixDeternminant(getMatrixMinor(M,0,c))
 
-    determinant = 0
-    for c in range(m):
-        determinant += ((-1)**c)*M[0,c]*getMatrixDeternminant(getMatrixMinor(M,0,c))
+    determinant = determinant % 26
+    determinant = multiplikativni_inverzi[determinant]
     return determinant
 
 def getMatrixInverse(M, m):
     determinant = getMatrixDeternminant(M, m)
-    determinant = determinant % 26
-    determinant = multiplikativni_inverzi[determinant]
+    print(determinant)
     #special case for 2x2 matrix:
     if m == 2:
         a1 = ( M[1,1]*determinant ) % 26
@@ -46,7 +48,7 @@ def getMatrixInverse(M, m):
     matr2 = matr.T
     for r in range(m):
         for c in range(m):
-            matr2[r,c] = matr2[r,c]/determinant
+            matr2[r,c] = (matr2[r,c]*determinant) % 26
     return matr2
 
 
@@ -149,10 +151,10 @@ def hill_decrypt():
         M = make_matrix( options, m, plain_text_numerical ) 
         print("M matrix:")
         print(M)
-        print(matrix_rank(M))
 
-        if np.isfinite(np.linalg.cond(M)):
+        if matrix_rank(M) == m :
             M_inv = getMatrixInverse(M, m)
+            print(M_inv)
             Y = make_matrix( options, m, cipher_numerical )
 
             #K = np.matmul(M_inv, Y)

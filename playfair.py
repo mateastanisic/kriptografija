@@ -1,6 +1,6 @@
 from letters_and_freq import letters, letters_revert, frequency_cro, frequency_cro_revert, abeceda
-from letters_freq import count_letter_frequencies
-from bigrams_freq import bigrams, freq_bigrams
+#from letters_freq import count_letter_frequencies
+#from bigrams_freq import bigrams, freq_bigrams
 
 def make_m5x5(key):
 	m5x5 = []
@@ -85,10 +85,7 @@ def print_cplayfair():
 	print(chiper)
 	print("\n\n")
 
-def decrypt_playfair_with_known_keyword(keyword, cipher):
-	m5x5 = make_m5x5(keyword.upper())
-	for i in range(0,5):
- 		print(m5x5[i][0]," ", m5x5[i][1], " ", m5x5[i][2], " ", m5x5[i][3], " ", m5x5[i][4])
+def decrypt_playfair_with_known_keyword(cipher, m5x5):
 	plain_text = ''
 
 	for i in range(0, len(cipher), 2):
@@ -129,12 +126,6 @@ def decrypt_playfair_with_known_keyword(keyword, cipher):
 
 	return plain_text
 
-# print_cplayfair()
-# m5x5 = make_m5x5("TAJNOPIS")
-# for i in range(0,5):
-# 	print(m5x5[i][0]," ", m5x5[i][1], " ", m5x5[i][2], " ", m5x5[i][3], " ", m5x5[i][4])
-# print(chript("MATEAUCIUUCIONICINACVJETNOM",m5x5))
-# input("wait")
 
 def print_playfair_decrypt():
 	key = input("Type key word: ")
@@ -144,10 +135,18 @@ def print_playfair_decrypt():
 	print("Playfair square:")
 	for i in range(0,5):
 		print(m5x5[i][0]," ", m5x5[i][1], " ", m5x5[i][2], " ", m5x5[i][3], " ", m5x5[i][4])
-	plain_text = chript(cipher, m5x5)
+	plain_text = decrypt_playfair_with_known_keyword(cipher, m5x5)
 	print("Plain text: ")
 	print(plain_text)
 	print("\n\n")
 
-#text = "BJBEDELDAHJQIJMABJPDTHSCMGDEBACMNVZTSDEGXMXGMADLBBABZTECQJGTEQDJNQQDENLHQAIPAQLTCIBAFQABKPEJPTLDEEDICMMFRLCEGBHXOSCQCEGJKXGVVHXNXMZMFSELDMFMMC"
-#print(decrypt_playfair_with_known_keyword("MEDICINA",text))
+cipher = "AHNKJPJVMCJSJARZZJCNKJSJAJQPKIDRRAHIDIJHJMJIDSJIXUVSHIASVIACEIJZDJCUDNVIVFJQJRYSKJNDRDXLBDXLTBRFKQEMRMJKJQJIDREDNSVLKIDVXFRZCNKJSJIYQPKVVSJS"
+key = "SREDNJIVIJEK"
+m5x5 = make_m5x5(key)
+print("Playfair square:")
+print(m5x5)
+plain_text = decrypt_playfair_with_known_keyword(cipher, m5x5)
+print("Plain text: ")
+print(plain_text)
+#text = "AHNKJPJVMCJSJARZZJCNKJSJAJQPKIDRRAHIDIJHJMJIDSJIXUVSHIASVIACEIJZDJCUDNVIVFJQJRYSKJNDRDXLBDXLTBRFKQEMRMJKJQJIDREDNSVLKIDVXFRZCNKJSJIYQPKVVSJS"
+#print(decrypt_playfair_with_known_keyword("SREDNJIVIJEK",text))
